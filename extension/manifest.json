@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "抖音续火助手",
+  "version": "0.1.0",
+  "description": "抖音自动续火助手（浏览器插件版）",
+  "permissions": [
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.douyin.com/chat*",
+        "https://creator.douyin.com/creator-micro/data/following/chat"
+      ],
+      "js": [
+        "interceptor.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.douyin.com/chat*",
+        "https://creator.douyin.com/creator-micro/data/following/chat"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ]
+}
